@@ -1,5 +1,5 @@
 const express = require('express');
-const evaluation = require("../controller/product")
+const evaluation = require("../model/product")
 
 const router = express.Router()
 
