@@ -1,25 +1,24 @@
+const express = require('express')
+const connect = require("./config/db");
+const path = require('path')
+const PORT = process.env.PORT || 5000;
+const {login, register}= require("./controller/admin.controller");
+const app = express();
+   
+app.use(express.json());
+app.post('/login',login);
+app.post('/register_nrupul5904', register);
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/', (req, res) => res.render('pages/index'));
 
-const express = require('express');
-const mongoose = require('mongoose');
-
-const app = express()
-
-app.use(express.json())
-
-const port = process.env.PORT || 3003
-
-
-const connect = ()=>{
-    return mongoose.connect("mongodb+srv://user:pass@cluster0.4xk9u.mongodb.net/fullstack?retryWrites=true&w=majority")
-};
-
-app.listen(port, async () => {
-  try {
-    await connect();
-  } catch (err) {
-    console.error(err.message);
+app.listen(PORT, async() =>{
+  try{
+      await connect();
+      console.log("listening on port 5000.....")
   }
-  console.log("listening on port 3003");
+  catch(err){
+     console.log(err)
+  }
 });
-
-
