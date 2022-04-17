@@ -1,20 +1,18 @@
-const product = require('./product')
+const express = require('express');
+const evaluation = require("../controller/product")
 
-const express = require("express");
+const router = express.Router()
 
-const router = express.Router();
+router.get("",async (req,res)=>{
 
-router.get('/product',async (req, res) => {
-try {
-
-    const data =await product.find().lean().exec()
-
-    return res.send(data);
-    
-} catch (error) {
-    return res.send(error.message);
-}
+    try {
+        const data = await evaluation.find().lean().exec()
+        return res.status(201).send(data)
+        
+    } catch (error) {
+        return res.status(500).send(error.message)
+        
+    }
 })
 
-
-module.exports=router;
+module.exports = router
