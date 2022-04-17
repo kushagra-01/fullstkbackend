@@ -7,7 +7,7 @@ const app = express();
    
 app.use(express.json());
 app.post('/login',login);
-app.post('/register_nrupul5904', register);
+app.post('/signup', register);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
