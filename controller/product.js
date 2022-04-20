@@ -14,5 +14,16 @@ router.get("",async (req,res)=>{
         
     }
 })
+router.post("",async (req,res)=>{
+
+    try {
+        const data = await evaluation.create(req.body)
+        return res.status(201).send(data)
+        
+    } catch (error) {
+        return res.status(500).send(error.message)
+        
+    }
+})
 
 module.exports = router
